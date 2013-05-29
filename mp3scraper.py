@@ -3,22 +3,16 @@ import re
 import urllib2
 from bs4 import BeautifulSoup
 
-# Initializing two variables: url and musicfolder. 
-# -- url contains the address to the website that you would like to download mp3's from
-# -- musicfolder is the local file folder that each mp3 will be downloaded to
-url = "http://www.example.com/"
-musicfolder = "/home/user/Music/example"
 
-
-def mp3scraper(url,musicfolder):
+def urlmp3downloader(url,dlmusicfolder):
 	# The following code uses urllib2 and BeautifulSoup to open, read and extract all the <a> tag links with '.mp3' to the links variable
 	page = urllib2.urlopen(url).read()
 	soup = BeautifulSoup(page)
 	links = soup.find_all('a', href=re.compile(r'.mp3'))
 
-	# Checks to see if the musicfolder path already exists. If not, it will create that directory to put the files
-	if not os.path.exists(musicfolder):
-		os.makedirs(musicfolder)
+	# Checks to see if the dlmusicfolder path already exists. If not, it will create that directory to put the files
+	if not os.path.exists(dlmusicfolder):
+		os.makedirs(dlmusicfolder)
 
 	# Initialize loop for each of the '.mp3' links
 	for link in links:
@@ -30,7 +24,7 @@ def mp3scraper(url,musicfolder):
 		songName = link.contents[0]
 		fileName = songName.replace("/","").replace("\\","") + ".mp3"
 		fullLink = link.get('href')
-		musicfilePath = os.path.join(musicfolder,fileName)
+		musicfilePath = os.path.join(dlmusicfolder,fileName)
 	
 		# Checks if the file has been previously downloaed
 		if not os.path.exists(musicfilePath):
@@ -39,10 +33,17 @@ def mp3scraper(url,musicfolder):
 			# Opens the link using urllib2
 			f = urllib2.urlopen(fullLink)
 			# writes the opened file to disk
-			with open(os.path.join(musicfolder,fileName), "wq") as local_file:
+			with open(os.path.join(musicfilePath), "wq") as local_file:
 				local_file.write(f.read())
 	
 		# If the file already exists (has been previously downloaded) prints following string imforming the user
 		else: print fileName  + " has already been downloaded!"
 
-mp3scraper(url,musicfolder)
+
+# Variables to run the function above: url and musicfolder. 
+# -- url contains the address to the website that you would like to download mp3's from
+# -- musicfolder is the local file folder that each mp3 will be downloaded to
+url= "http://www.20jazzfunkgreats.co.uk/"
+dlmusicfolder = "/home/dtromero/Music/XXJFG"
+
+urlmp3downloader(url,dlmusicfolder)
