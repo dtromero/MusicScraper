@@ -1,1 +1,1 @@
-An MP3 scraper using BeautifulSoup and Python - v1 will return wget function for each link
+Initial version is to scrape mp3s from my favorite music blogs - using BeautifulSoup and urllib2 on a linux box 
