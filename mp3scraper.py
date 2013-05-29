@@ -3,7 +3,6 @@ import re
 import urllib2
 from bs4 import BeautifulSoup
 
-
 def urlmp3downloader(url,dlmusicfolder):
 	# The following code uses urllib2 and BeautifulSoup to open, read and extract all the <a> tag links with '.mp3' to the links variable
 	page = urllib2.urlopen(url).read()
