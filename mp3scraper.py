@@ -10,7 +10,7 @@ url = "http://www.example.com/"
 musicfolder = "/home/user/Music/example"
 
 
-def mp3scraper(url,musicfolder)
+def mp3scraper(url,musicfolder):
 	# The following code uses urllib2 and BeautifulSoup to open, read and extract all the <a> tag links with '.mp3' to the links variable
 	page = urllib2.urlopen(url).read()
 	soup = BeautifulSoup(page)
