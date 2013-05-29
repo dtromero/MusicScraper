@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 
 url = "http://www.example.com/"
 urltag = "example"
-filepath = "/home/user/Music/"
+homemusicfolder = "/home/user/Music/"
 
-musicfolder = os.path.join(filepath,urltag)
+musicfolder = os.path.join(homemusicfolder,urltag)
 page = urllib2.urlopen(url).read()
 soup = BeautifulSoup(page)
 
@@ -17,12 +17,18 @@ if not os.path.exists(musicfolder):
 	os.makedirs(musicfolder)
 
 for link in links:
-	linkString = link.contents[0]
-	linkName = linkString.replace("/","").replace("\\","") + ".mp3"
+	fileString = link.contents[0]
+	fileName = fileString.replace("/","").replace("\\","") + ".mp3"
 	fullLink = link.get('href')
-	print "Downloading: " + linkName + " | To: " + filepath + urltag
 	
-	f = urllib2.urlopen(fullLink)
+	musicfilePath = os.path.join(musicfolder,fileName)
+	
+	if not os.path.exists(musicfilePath):
+		print "Downloading: " + fileName + " | To: " + musicfilePath
+	
+		f = urllib2.urlopen(fullLink)
 
-	with open(os.path.join(musicfolder,linkName), "wq") as local_file:
-		local_file.write(f.read())
+		with open(os.path.join(musicfolder,fileName), "wq") as local_file:
+			local_file.write(f.read())
+
+	else: print fileName  + " has already been downloaded!"
