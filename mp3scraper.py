@@ -6,8 +6,8 @@ from bs4 import BeautifulSoup
 # Initializing two variables: url and musicfolder. 
 # -- url contains the address to the website that you would like to download mp3's from
 # -- musicfolder is the local file folder that each mp3 will be downloaded to
-url = "http://www.aquariumdrunkard.com/"
-musicfolder = "/home/dtromero/Music/aquariumdrunkard"
+url = "http://www.example.com/"
+musicfolder = "/home/user/Music/example"
 
 # The following code uses urllib2 and BeautifulSoup to open, read and extract all the <a> tag links with '.mp3' to the links variable
 page = urllib2.urlopen(url).read()
