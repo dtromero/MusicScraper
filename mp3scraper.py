@@ -43,7 +43,7 @@ def urlmp3downloader(url,dlmusicfolder):
 # Variables to run the function above: url and musicfolder. 
 # -- url contains the address to the website that you would like to download mp3's from
 # -- musicfolder is the local file folder that each mp3 will be downloaded to
-url= "http://www.20jazzfunkgreats.co.uk/"
-dlmusicfolder = "/home/dtromero/Music/XXJFG"
+url= "http://www.example.com/"
+dlmusicfolder = "/home/user/Music/example"
 
 urlmp3downloader(url,dlmusicfolder)
