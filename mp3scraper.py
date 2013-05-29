@@ -33,7 +33,7 @@ for link in links:
 	# Checks if the file has been previously downloaed
 	if not os.path.exists(musicfilePath):
 		# Prints the string for file being downloaded and the filepath
-		print "Downloading: " + fileName + " | To: " + musicfilePath
+		print "Downloading: " + fullLink + " | To: " + musicfilePath
 		# Opens the link using urllib2
 		f = urllib2.urlopen(fullLink)
 		# writes the opened file to disk
