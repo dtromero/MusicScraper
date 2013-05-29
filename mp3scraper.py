@@ -6,8 +6,8 @@ from bs4 import BeautifulSoup
 # Initializing two variables: url and musicfolder. 
 # -- url contains the address to the website that you would like to download mp3's from
 # -- musicfolder is the local file folder that each mp3 will be downloaded to
-url = "http://www.aquariumdrunkard.com/"
-musicfolder = "/home/dtromero/Music/aquariumdrunkard"
+url = "http://www.example.com/"
+musicfolder = "/home/user/Music/example"
 
 
 def mp3scraper(url,musicfolder)
@@ -35,7 +35,7 @@ def mp3scraper(url,musicfolder)
 		# Checks if the file has been previously downloaed
 		if not os.path.exists(musicfilePath):
 			# Prints the string for file being downloaded and the filepath
-			print "Downloading: " + fileName + " | To: " + musicfilePath
+			print "Downloading: " + fullLink + " | To: " + musicfilePath
 			# Opens the link using urllib2
 			f = urllib2.urlopen(fullLink)
 			# writes the opened file to disk
