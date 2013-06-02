@@ -3,7 +3,6 @@ import re
 import urllib2
 from bs4 import BeautifulSoup
 
-
 def urlmp3downloader(url,dlmusicfolder):
 	# The following code uses urllib2 and BeautifulSoup to open, read and extract all the <a> tag links with '.mp3' to the links variable
 	page = urllib2.urlopen(url).read()
@@ -39,11 +38,12 @@ def urlmp3downloader(url,dlmusicfolder):
 		# If the file already exists (has been previously downloaded) prints following string imforming the user
 		else: print fileName  + " has already been downloaded!"
 
-
-# Variables to run the function above: url and musicfolder. 
-# -- url contains the address to the website that you would like to download mp3's from
-# -- musicfolder is the local file folder that each mp3 will be downloaded to
-url= "http://www.example.com/"
-dlmusicfolder = "/home/user/Music/example"
-
-urlmp3downloader(url,dlmusicfolder)
+# Accepts and iterates through a list of (x,y) values where:
+# x is the website and
+# y is the filepath
+def multisitemp3(sitelist):
+	for (x,y) in sitelist:
+		n = len(x)
+		print  (n+24)*"-" + "\n" + "| Checking " + x + " for mp3s.. |" + "\n" + (n+24)*"-" 
+		urlmp3downloader(x,y)
+	
