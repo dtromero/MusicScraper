@@ -7,7 +7,7 @@ def urlmp3downloader(url,dlmusicfolder):
 	# The following code uses urllib2 and BeautifulSoup to open, read and extract all the <a> tag links with '.mp3' to the links variable
 	page = urllib2.urlopen(url).read()
 	soup = BeautifulSoup(page)
-	links = soup.find_all('a', href=re.compile(r'.mp3'))
+	links = soup.find_all('a', href=re.compile("\.mp3$"))
 
 	# Checks to see if the dlmusicfolder path already exists. If not, it will create that directory to put the files
 	if not os.path.exists(dlmusicfolder):
@@ -20,8 +20,8 @@ def urlmp3downloader(url,dlmusicfolder):
 		# -- file name stores the songName text, performs basic character escaping and appends the .mp3 file extension
 		# -- fullLink stores the link location for the file being downloaded
 		# -- musicfilePate creates and stores the full filepath and name for the mp3 being downloaded
-		songName = link.contents[0]
-		fileName = songName.replace("/","").replace("\\","") + ".mp3"
+		#songName = link.contents#[0]
+		fileName = link["href"].split("/")[-1]  #songName.replace("/","").replace("\\","") + ".mp3"   	
 		fullLink = link.get('href')
 		musicfilePath = os.path.join(dlmusicfolder,fileName)
 	
