@@ -20,7 +20,6 @@ def urlmp3downloader(url,dlmusicfolder):
 		# -- file name stores the songName text, performs basic character escaping and appends the .mp3 file extension
 		# -- fullLink stores the link location for the file being downloaded
 		# -- musicfilePate creates and stores the full filepath and name for the mp3 being downloaded
-		#songName = link.contents#[0]
 		fileName = link["href"].split("/")[-1]  #songName.replace("/","").replace("\\","") + ".mp3"   	
 		fullLink = link.get('href')
 		musicfilePath = os.path.join(dlmusicfolder,fileName)
@@ -32,7 +31,7 @@ def urlmp3downloader(url,dlmusicfolder):
 			# Opens the link using urllib2
 			f = urllib2.urlopen(fullLink)
 			# writes the opened file to disk
-			with open(os.path.join(musicfilePath), "wq") as local_file:
+			with open(musicfilePath, "wq") as local_file:
 				local_file.write(f.read())
 	
 		# If the file already exists (has been previously downloaded) prints following string imforming the user
