@@ -5,9 +5,19 @@ from bs4 import BeautifulSoup
 
 def urlmp3downloader(url,dlmusicfolder):
 	# The following code uses urllib2 and BeautifulSoup to open, read and extract all the <a> tag links with '.mp3' to the links variable
-	page = urllib2.urlopen(url).read()
-	soup = BeautifulSoup(page)
-	links = soup.find_all('a', href=re.compile("\.mp3$"))
+	try:
+		page = urllib2.urlopen(url).read()
+		soup = BeautifulSoup(page)
+		links = soup.find_all('a', href=re.compile("\.mp3$"))
+	except urllib2.HTTPError, e:
+		print e
+		return ""
+	except urllib2.URLError, e:
+		print e
+		return ""
+	except Exception:
+		print "generic exception"
+		return ""
 
 	# Checks to see if the dlmusicfolder path already exists. If not, it will create that directory to put the files
 	if not os.path.exists(dlmusicfolder):
